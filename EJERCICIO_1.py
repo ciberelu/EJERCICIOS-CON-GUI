@@ -3,35 +3,39 @@
 
 
 from tkinter import *
+import string
 import tkinter
-from turtle import width
 
-##crea la ventana
 window = tkinter.Tk()
-var = IntVar()
-def seleccionado ():
+
+checkeado = StringVar()
+checkeado.set(None)
+
+def seleccionaste():
+    print("hola hago algo cuando le dan click al boton")
+    ventana.config(text="{}".format(checkeado.get()))
     
-    print("seleccionaste la opcion: ", str(var.get()))
+def reiniciarVentana():
+    print("estoy reiniciando la ventana")
+    checkeado.set(None)
+    ventana.config(text=" ")
 
-def restart():   # ESTA ES LA SENTENCIA QUE DA ORIGEN A LA CONSULTA
-    window.quit()  
-    print("adios")
-  
-##crea el boton
-BOTON_1 = tkinter.Radiobutton(window, text= "soy el boton 1", variable=var, value=1, command=seleccionado)
-BOTON_1.pack(ipadx=50, ipady=50)
+def salir():
+    window.quit()
 
-BOTON_2 = tkinter.Radiobutton(window, text= "soy el boton 2", variable=var, value=2, command=seleccionado)
-BOTON_2.pack(ipadx=50, ipady=51)
+boton_1 = tkinter.Radiobutton(window, text="soy el boton 1", variable=checkeado, value="soy el boton 1", command=seleccionaste)
+boton_1.pack()  
 
-BOTON_3 = tkinter.Radiobutton(window, text= "soy el boton 3", variable=var, value=3, command=seleccionado)
-BOTON_3.pack(ipadx=50, ipady=52)
+boton_2 = tkinter.Radiobutton(window, text="soy el boton 2", variable=checkeado, value="soy el boton 2", command=seleccionaste)
+boton_2.pack()
 
-BOTON_4 = tkinter.Radiobutton(window, text= "soy el boton 4",variable=var, value=4, command=seleccionado)
-BOTON_4.pack(ipadx=50, ipady=53)
+boton_3 = tkinter.Radiobutton(window, text="soy el boton 3", variable=checkeado, value="soy el boton 3", command=seleccionaste)
+boton_3.pack()
 
-reinicio = tkinter.Button(window, text="reiniciar", command=restart)
-reinicio.pack(ipadx=50, ipady=55)
+ventana = Label(window)
+ventana.pack()
 
+botonReiniciar = (tkinter.Button(window, text="reiniciar", command=reiniciarVentana)).pack()
+botonSalir = (tkinter.Button(window, text="leave", bg="black", fg="white", command=salir)).pack()
 
 window.mainloop()
